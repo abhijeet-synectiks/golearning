@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"bytes"
 	"os"
 )
 
@@ -34,7 +35,7 @@ func main() {
 	// Use Decoder to decode JSON data from a string
 	fmt.Println("Decoding from JSON:")
 	var personFromJSON Person
-	decoder := json.NewDecoder([]byte(jsonData))
+	decoder := json.NewDecoder(bytes.NewReader([]byte(jsonData))) // Wrap jsonData with bytes.NewReader
 	err = decoder.Decode(&personFromJSON)
 	if err != nil {
 		fmt.Println("Error decoding:", err)
